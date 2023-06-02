@@ -6,10 +6,6 @@ First, start the server in "watch mode"
 ```
 cargo watch -q -c -w src/ -x run
 ```
-// cargo watch -q -c -w src/ -x run
-// q quiet
-// c clear
-// x execute
 
 ## running a quick test against local server
 ```
