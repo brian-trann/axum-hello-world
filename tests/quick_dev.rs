@@ -12,8 +12,9 @@ async fn quick_dev() -> Result<()> {
     let req_login = hc.do_post(
         "/api/login",
         json!({
+          "password":"password",
           "username":"demouser",
-          "password":"password"
+          "username":"demouser",
         }),
     );
     let req_login_fail = hc.do_post(
@@ -25,22 +26,14 @@ async fn quick_dev() -> Result<()> {
     );
     req_login.await?.print().await?;
     // req_login_fail.await?.print().await?;
-    let req_create_ticket = hc.do_post("/api/tickets", json!({
-      "title": "ticket1"
-    }));
+    let req_create_ticket = hc.do_post(
+        "/api/tickets",
+        json!({
+          "title": "ticket1"
+        }),
+    );
     req_create_ticket.await?.print().await?;
     // hc.do_delete("/api/tickets/1").await?.print().await?;
     hc.do_get("/api/tickets").await?.print().await?;
     Ok(())
 }
-
-// cargo watch -q -c -w src/ -x run
-// q quiet
-// c clear
-// x execute
-
-// cargo watch -q -c -w tests/ -x "test -q quick_dev -- --nocapture"
-// q quiet
-// c clear
-// w watch
-// x execute
